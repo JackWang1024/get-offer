@@ -60,17 +60,6 @@ gulp.task('jshint', function () {
     //TODO: livereload
 });
 
-// Optimize Images
-gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
-      progressive: true,
-      interlaced: true
-    })))
-    .pipe(gulp.dest('dist/images'))
-    .pipe($.size({title: 'images'}));
-});
-
 // Copy All Files At The Root Level (app)
 gulp.task('copy', function () {
   var app = gulp.src([
@@ -82,7 +71,7 @@ gulp.task('copy', function () {
   }).pipe(gulp.dest('dist'));
 
   var bower = gulp.src([
-    'lib/**/*'
+    'app/lib/**/*'
   ]).pipe(gulp.dest('dist/lib'));
 
   var elements = gulp.src(['app/elements/**/*.html'])
@@ -231,7 +220,7 @@ gulp.task('default', ['clean'], function (cb) {
   runSequence(
     ['copy', 'styles'],
     'elements',
-    ['jshint', 'images', 'fonts', 'html'],
+    ['jshint', 'fonts', 'html'],
     'vulcanize',
     cb);
     // Note: add , 'precache' , after 'vulcanize', if your are going to use Service Worker
