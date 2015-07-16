@@ -1,0 +1,47 @@
+<dom-module id="topic-list">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <paper-shadow class="list" on-iron-activate="_listTap">
+      <template is="dom-repeat" items="{{topics}}">
+        <paper-item horizontal layout>
+          <span>{{item.title}}</span>
+          <span flex></span>
+          <span class="reply">{{item.reply}}</span>
+        </paper-item>
+      </template>
+    </paper-shadow>
+  </template>
+</dom-module>
+<script>
+  (function () {
+    Polymer({
+      is: 'topic-list',
+      properties: {
+        topics: {
+          type: Array,
+          notify: true,
+        }
+      },
+      ready: function() {
+        console.log('yo')
+        this.topics = [{
+          'title': '终于集齐BAT',
+          'reply': 5,
+          'lastUpdate': '2015-07-16T14:21:43.219Z'
+        }, {
+          'title': '你们弱爆了，我已经集齐FLAG',
+          'reply': 21,
+          'lastUpdate': '2015-07-16T14:12:40.219Z'
+        }, {
+          'title': '等H1B好烦啊啊啊',
+          'reply': 3,
+          'lastUpdate': '2015-07-16T13:56:42.219Z'
+        }];
+      }
+    });
+  })();
+</script>

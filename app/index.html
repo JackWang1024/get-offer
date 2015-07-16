@@ -48,128 +48,149 @@
 <body unresolved class="fullbleed layout vertical">
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
-
-    <paper-drawer-panel id="paperDrawerPanel">
-      <div drawer>
-
+    <paper-drawer-panel id="navDrawerPanel" responsive-width="1280px">
+      <!-- Drawer Content -->
+      <nav class="nav" drawer>
         <!-- Drawer Toolbar -->
         <paper-toolbar id="drawerToolbar">
-          <span class="paper-font-title">Menu</span>
+          <span class="paper-font-title">小透明</span>
         </paper-toolbar>
 
-        <!-- Drawer Content -->
-          <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-              <a data-route="home" href="/">
-                <iron-icon icon="home"></iron-icon>
-                <span>Home</span>
-              </a>
+        <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+            <a data-route="home" href="/">
+              <iron-icon icon="home"></iron-icon>
+              <span>首页</span>
+            </a>
 
-              <a data-route="users" href="/users">
-                <iron-icon icon="info"></iron-icon>
-                <span>Users</span>
-              </a>
+            <a data-route="home" href="node/preparation">
+              <iron-icon icon="book"></iron-icon>
+              <span>面试准备</span>
+            </a>
 
-              <a data-route="contact" href="/contact">
-                <iron-icon icon="mail"></iron-icon>
-                <span>Contact</span>
-              </a>
-          </paper-menu>
-      </div>
-      <paper-header-panel main mode="waterfall-tall">
+            <a data-route="home" href="node/process">
+              <iron-icon icon="event-seat"></iron-icon>
+              <span>面试中</span>
+            </a>
 
-        <!-- Main Toolbar -->
-        <paper-toolbar id="mainToolbar">
-          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-          <span class="flex"></span>
+            <a data-route="home" href="node/wait">
+              <iron-icon icon="query-builder"></iron-icon>
+              <span>首页</span>
+            </a>
 
-          <!-- Toolbar icons -->
-          <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
+            <a data-route="home" href="node/experience">
+              <iron-icon icon="communication:vpn-key"></iron-icon>
+              <span>经验之谈</span>
+            </a>
 
-          <!-- Application name -->
-          <div class="middle paper-font-display2 app-name">面筋</div>
+            <a data-route="home" href="node/gossip">
+              <iron-icon icon="question-answer"></iron-icon>
+              <span>爆料吐槽</span>
+            </a>
 
-          <!-- Application sub title -->
-          <div class="bottom title"></div>
+            <a data-route="contact" href="/favorite">
+              <iron-icon icon="favorite"></iron-icon>
+              <span>打个赏</span>
+            </a>
+        </paper-menu>
+        <!-- Nav Content -->
+      </nav>
 
-        </paper-toolbar>
+      <paper-drawer-panel id="mainDrawerPanel" class="main-drawer-panel" main responsive-width="600px" drawer-width="[[_computeListWidth(_isMobile)]]" drawer-toggle-attribute="list-toggle" narrow="{{_isMobile}}">
 
-        <!-- Main Content -->
-        <div class="content">
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+        <paper-header-panel class="list-panel" drawer>
 
-            <section data-route="home">
-              <paper-material elevation="1">
-                <my-greeting></my-greeting>
+          <!-- List Toolbar -->
+          <paper-toolbar>
+            <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+            <span class="flex"></span>
+            <paper-icon-button icon="refresh"></paper-icon-button>
+          </paper-toolbar>
 
-                <p class="paper-font-subhead">You now have:</p>
-                <my-list></my-list>
+          <!-- List -->
+          <div data-route="node-topics">
+            <topic-list></topic-list>
+          </div>
+          
+        </paper-header-panel>
 
-                <p class="paper-font-body2">Looking for more Web App layouts? Check out our <a href="https://github.com/PolymerElements/app-layout-templates">layouts</a> collection. You can also <a href="http://polymerelements.github.io/app-layout-templates/">preview</a> them live.</p>
-              </paper-material>
-              <paper-material elevation="1">
-                <p class="paper-font-body2">This is another card.</p>
-              </paper-material>
+        <paper-header-panel main class="content-panel" mode="waterfall-tall">
 
-              <paper-material elevation="1" class="paper-font-body2">
-                <h1 id="license">License</h1>
-                <p>Everything in this repo is BSD style license unless otherwise specified.</p>
-                <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
-                <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
-                <ul>
-                <li>Redistributions of source code must retain the above copyright
-                notice, this list of conditions and the following disclaimer.</li>
-                <li>Redistributions in binary form must reproduce the above
-                copyright notice, this list of conditions and the following disclaimer
-                in the documentation and/or other materials provided with the
-                distribution.</li>
-                <li>Neither the name of Google Inc. nor the names of its
-                contributors may be used to endorse or promote products derived from
-                this software without specific prior written permission.</li>
-                </ul>
-                <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
-              </paper-material>
+          <!-- Main Toolbar -->
+          <paper-toolbar id="mainToolbar">
+            <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+            <span class="flex"></span>
 
-            </section>
+            <!-- Toolbar icons -->
+            <h1 class="middle">你们弱爆了，我已经集齐FLAG</h1>
+            <paper-icon-button icon="search"></paper-icon-button>
 
-            <section data-route="users">
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">Users</h2>
-                <p>This is the users section</p>
-                <a href="/users/Rob">Rob</a>
-              </paper-material>
-            </section>
+            <!-- Application name -->
+            <!-- <div class="middle paper-font-display2 app-name"></div> -->
 
-            <section data-route="users">
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">Users</h2>
-                <p>This is the users section</p>
-                <a href="/users/Rob">Rob</a>
-              </paper-material>
-            </section>
+            <!-- Application sub title -->
+            <!-- <div class="bottom title"></div> -->
+          </paper-toolbar>
+
+          <!-- Main Content -->
+          <div class="content">
+            <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
+              <section data-route="home">
+
+                <paper-material elevation="1">
+                  <my-greeting></my-greeting>
+
+                  <p class="paper-font-subhead">You now have:</p>
+                  <my-list></my-list>
+
+                  <p class="paper-font-body2">Looking for more Web App layouts? Check out our <a href="https://github.com/PolymerElements/app-layout-templates">layouts</a> collection. You can also <a href="http://polymerelements.github.io/app-layout-templates/">preview</a> them live.</p>
+                </paper-material>
+
+                <paper-material elevation="1">
+                  <p class="paper-font-body2">This is another card.</p>
+                </paper-material>
+
+                <paper-material elevation="1" class="paper-font-body2">
+                  <h1 id="license">License</h1>
+                  <p>Everything in this repo is BSD style license unless otherwise specified.</p>
+                </paper-material>
+
+              </section>
+
+              <section data-route="node-topics">
+                <paper-material elevation="1">
+                  <h2 class="paper-font-display2">Users</h2>
+                  <p>This is the users section</p>
+                  <a href="/users/Rob">Rob</a>
+                </paper-material>
+              </section>
 
 
-            <section data-route="user-info">
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">
-                User:<span>{{params.name}}</span>
-                </h2>
-                <div>This is <span>{{params.name}}</span>'s section</div>
-              </paper-material>
-            </section>
+              <section data-route="user-info">
+                <paper-material elevation="1">
+                  <h2 class="paper-font-display2">
+                  User:<span>{{params.name}}</span>
+                  </h2>
+                  <div>This is <span>{{params.name}}</span>'s section</div>
+                </paper-material>
+              </section>
 
-            <section data-route="contact">
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">Contact</h2>
-                <p>This is the contact section</p>
-              </paper-material>
-            </section>
+              <section data-route="contact">
+                <paper-material elevation="1">
+                  <h2 class="paper-font-display2">Contact</h2>
+                  <p>This is the contact section</p>
+                </paper-material>
+              </section>
 
-          </iron-pages>
-        </div>
-      </paper-header-panel>
+            </iron-pages>
+          </div>
+        </paper-header-panel>
+
+      </paper-drawer-panel>
+      <!-- main drawer ends -->
+
     </paper-drawer-panel>
-
+    <!-- nav drawer ends -->
   </template>
 
   <!-- build:js scripts/app.js -->
