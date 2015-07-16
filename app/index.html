@@ -56,38 +56,38 @@
           <span class="paper-font-title">小透明</span>
         </paper-toolbar>
 
-        <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+        <paper-menu class="list" on-iron-select="onMenuSelect">
             <a data-route="home" href="/">
               <iron-icon icon="home"></iron-icon>
               <span>首页</span>
             </a>
 
-            <a data-route="home" href="node/preparation">
+            <a data-route="node" href="node/preparation">
               <iron-icon icon="book"></iron-icon>
               <span>面试准备</span>
             </a>
 
-            <a data-route="home" href="node/process">
+            <a data-route="node" href="node/process">
               <iron-icon icon="event-seat"></iron-icon>
               <span>面试中</span>
             </a>
 
-            <a data-route="home" href="node/wait">
+            <a data-route="node" href="node/wait">
               <iron-icon icon="query-builder"></iron-icon>
-              <span>首页</span>
+              <span>等待结果</span>
             </a>
 
-            <a data-route="home" href="node/experience">
+            <a data-route="node" href="node/experience">
               <iron-icon icon="communication:vpn-key"></iron-icon>
               <span>经验之谈</span>
             </a>
 
-            <a data-route="home" href="node/gossip">
+            <a data-route="node" href="node/gossip">
               <iron-icon icon="question-answer"></iron-icon>
               <span>爆料吐槽</span>
             </a>
 
-            <a data-route="contact" href="/favorite">
+            <a data-route="favorite" href="/favorite">
               <iron-icon icon="favorite"></iron-icon>
               <span>打个赏</span>
             </a>
@@ -107,10 +107,9 @@
           </paper-toolbar>
 
           <!-- List -->
-          <div data-route="node-topics">
-            <topic-list></topic-list>
-          </div>
-          
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+          <topic-list node="{{selected}}" data-route="node-topics"></topic-list>
+          </iron-pages>
         </paper-header-panel>
 
         <paper-header-panel main class="content-panel" mode="waterfall-tall">
@@ -157,11 +156,9 @@
 
               </section>
 
-              <section data-route="node-topics">
+              <section data-route="topic">
                 <paper-material elevation="1">
-                  <h2 class="paper-font-display2">Users</h2>
-                  <p>This is the users section</p>
-                  <a href="/users/Rob">Rob</a>
+                  <p>{{params.id}}</p>
                 </paper-material>
               </section>
 

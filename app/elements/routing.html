@@ -21,6 +21,10 @@
       app.route = 'favorite';
     });
 
+    page('/topic/:id', function(data) {
+      app.route = 'topic';
+      app.params = data.params;
+    });
     // remove #! before urls
     page({
       hashbang: true
