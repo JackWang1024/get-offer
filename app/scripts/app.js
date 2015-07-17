@@ -34,8 +34,4 @@
     return isMobile ? '100%' : '33%';
   };
 
-  app._listTap = function() {
-    this.$.mainDrawerPanel.closeDrawer();
-  };
-
 })(document);

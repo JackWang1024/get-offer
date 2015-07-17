@@ -46,7 +46,6 @@
 </head>
 
 <body unresolved class="fullbleed layout vertical">
-  <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
     <paper-drawer-panel id="navDrawerPanel" responsive-width="1280px">
       <!-- Drawer Content -->
@@ -95,7 +94,9 @@
         <!-- Nav Content -->
       </nav>
 
-      <paper-drawer-panel id="mainDrawerPanel" class="main-drawer-panel" main responsive-width="600px" drawer-width="[[_computeListWidth(_isMobile)]]" drawer-toggle-attribute="list-toggle" narrow="{{_isMobile}}">
+      <paper-drawer-panel id="mainDrawerPanel" class="main-drawer-panel" main responsive-width="600px"
+          drawer-width="[[_computeListWidth(_isMobile)]]" drawer-toggle-attribute="list-toggle"
+          narrow="{{_isMobile}}">
 
         <paper-header-panel class="list-panel" drawer>
 
@@ -107,21 +108,22 @@
           </paper-toolbar>
 
           <!-- List -->
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
-          <topic-list node="{{selected}}" data-route="node-topics"></topic-list>
-          </iron-pages>
+          
+          <topic-list node="{{selected}}"></topic-list>
+          
         </paper-header-panel>
 
         <paper-header-panel main class="content-panel" mode="waterfall-tall">
 
           <!-- Main Toolbar -->
           <paper-toolbar id="mainToolbar">
+            <paper-icon-button icon="arrow-back" list-toggle></paper-icon-button>
             <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
             <span class="flex"></span>
 
             <!-- Toolbar icons -->
             <h1 class="middle">你们弱爆了，我已经集齐FLAG</h1>
-            <paper-icon-button icon="search"></paper-icon-button>
+            <!-- <paper-icon-button icon="search"></paper-icon-button> -->
 
             <!-- Application name -->
             <!-- <div class="middle paper-font-display2 app-name"></div> -->

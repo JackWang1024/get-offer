@@ -54,6 +54,9 @@
       },
       path: function(value) {
         return 'topic/' + value;
+      },
+      _listTap: function() {
+        document.querySelector('#mainDrawerPanel').closeDrawer();
       }
     });
   })();
