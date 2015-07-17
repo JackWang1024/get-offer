@@ -1,81 +1,66 @@
-var User = require('../models/user'),
-    Course = require('../models/course'),
-    Requirement = require('../models/requirement'),
-    Homework = require('../models/homework');
+var Topic = require('../models/topic'),
+    Reply = require('../models/reply');
+
+var REPLIES_PER_PAGE = 10;
 
 exports.get = function(app) {
   function get(req, res) {
-    Homework
+    Topic
     .findOne({_id: req.params.id})
-    .deepPopulate('requirement.course')
     .exec()
-    .then(function(homework) {
-      if (!req.user.isTeacher && !homework.student.equals(req.user._id)) {
-        console.log('belong to ' + homework.student + ', user is ' + req.user._id)
-        res.status(403).end();
-      } else {
-        res.json(homework);
+    .then(function(topic) {
+      if (!topic) {
+        throw Error("The topic doesn't exist!");
       }
+
+      var replyPage = req.params.reply_page || 1;  // page index
+      return Reply.paginate({
+        topic_id: topic._id  // query
+      }, {  // page
+        page: replyPage,
+        limit: REPLIES_PER_PAGE
+      }, function(err, replies, currentPage) {
+        if (err) {
+          console.log('Error in paginating replies');
+          throw err;
+        }
+
+        res.json({
+          replies: replies,
+          reply_page: currentPage
+        });
+      });
     });
   }
+
   return get;
 };
 
 exports.post = function(app) {
   function post(req, res) {
-    var newHomework = {
+    
+    var newTopic = {
+      title: req.body.title,
       content: req.body.content,
-      student: req.user._id,
-      requirement: req.body.requirement
+      user_name: req.params.user_name,
+      user_email: req.params.user_email,
+      node_name: req.params.node_name,
+      post_date: new Date(),
+      last_update: new Date(),
+      reply_count: 0
     };
 
-    var homework = new Homework(newHomework);
+    var topic = new Topic(newTopic);
 
-    homework
+    topic
     .save(function(err) {
       if (err) {
-        console.log('Error in Saving homework: ' + err);
+        console.log('Error in Saving topic: ' + err);
         throw err;
       }
-
-      Requirement
-      .update({ _id: homework.requirement },
-              { $push: { homeworks: homework._id } })
-      .exec()
-      .then(function() {
-        res.json({
-          success: true,
-          homework: homework
-        });
-      });
     });
 
   }
 
   return post;
-};
-
-exports.put = function(app) {
-
-  function put(req, res) {
-    var newHomework = {};
-    if (req.user.isTeacher) {
-      newHomework.grade = Number(req.body.grade);
-    } else {
-      newHomework.content = req.body.content;
-    }
-
-    Homework
-    .findOneAndUpdate({ _id: req.params.id },
-                      { $set: newHomework })
-    .exec()
-    .then(function(homework) {
-      res.json({
-        success: true,
-        homework: homework
-      });
-    });
-  }
-
-  return put;
 };

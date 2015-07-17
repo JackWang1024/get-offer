@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var exphbs  = require('express-handlebars');
+var mark = require('./middlewares/mark');
+var santize = require('./middlewares/santize')
 
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
@@ -18,7 +20,7 @@ var staticPath = {
   primary: __dirname + 'app',
   secondary: __dirname + '.tmp',
   production: __dirname + 'dist'
-}
+};
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -34,8 +36,8 @@ if (app.get('env') === 'development') {
   app.use(serveStatic(path.join(__dirname, staticPath.production)));
 }
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+app.use(mark());
+app.use(santize());
 
 var apis = require('./routes/api')(app);
 app.use('/api', apis);
