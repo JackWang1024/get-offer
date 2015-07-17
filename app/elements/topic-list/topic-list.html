@@ -9,7 +9,7 @@
       <paper-menu class="list" on-iron-activate="_listTap" data-route="node-topics">
         <template is="dom-repeat" items="{{topics}}">
           <paper-item horizontal layout>
-            <a data-route="topic" href="{{path(item.id)}}">{{item.title}}</a>
+            <a data-route="topic">{{item.title}}</a>
             <span flex></span>
             <span class="reply">{{item.reply}}</span>
           </paper-item>
@@ -53,9 +53,10 @@
         }];
       },
       path: function(value) {
-        return 'topic/' + value;
+        return '/topic/' + value;
       },
-      _listTap: function() {
+      _listTap: function(e) {
+        page(this.path(this.topics[e.detail.selected].id));
         document.querySelector('#mainDrawerPanel').closeDrawer();
       }
     });
