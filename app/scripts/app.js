@@ -22,11 +22,14 @@
   });
 
   // Close drawer after menu item is selected if drawerPanel is narrow
-  app.onMenuSelect = function() {
-    var drawerPanel = document.querySelector('#navDrawerPanel');
-    if (drawerPanel.narrow) {
-      drawerPanel.closeDrawer();
+  app.onMenuSelect = function(e) {
+    var navDrawer = document.querySelector('#navDrawerPanel');
+    if (navDrawer.narrow) {
+      navDrawer.closeDrawer();
     }
+
+    var mainDrawer = document.querySelector('#mainDrawerPanel');
+    mainDrawer.openDrawer();
   };
 
   app._computeListWidth = function(isMobile) {
