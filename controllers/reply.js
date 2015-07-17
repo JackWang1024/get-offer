@@ -1,4 +1,4 @@
-var Topic = require('../model/topic'),
+var Topic = require('../models/topic'),
     Reply = require('../models/reply');
 
 exports.get = function(app) {

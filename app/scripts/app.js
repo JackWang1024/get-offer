@@ -28,8 +28,10 @@
       navDrawer.closeDrawer();
     }
 
-    var mainDrawer = document.querySelector('#mainDrawerPanel');
-    mainDrawer.openDrawer();
+    if (e.detail.item.dataset.route === "node") {
+      var mainDrawer = document.querySelector('#mainDrawerPanel');
+      mainDrawer.openDrawer();
+    }
   };
 
   app._computeListWidth = function(isMobile) {
