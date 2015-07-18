@@ -44,6 +44,10 @@ app.use(session({
   saveUninitialized: false
 }));
 
+
+var apis = require('./routes/api')(app);
+app.use('/api', apis);
+
 if (app.get('env') === 'development') {
 
   app.get('/', function(req, res){
@@ -64,11 +68,6 @@ if (app.get('env') === 'development') {
 
 app.use(mark());
 app.use(sanitize());
-
-
-
-var apis = require('./routes/api')(app);
-app.use('/api', apis);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

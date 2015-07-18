@@ -6,7 +6,7 @@ var TOPICS_PER_PAGE = 10;
 exports.get = function(app) {
   function get(req, res) {
     Node
-    .findOne({name: req.params.node_name})
+    .findOne({name: req.params.name})
     .exec()
     .then(function(node) {
       if (!node) {
