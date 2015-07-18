@@ -165,6 +165,15 @@
                 <topic-page></topic-page>
               </section>
 
+              <section data-route="topic-add">
+                <paper-material elevation="1" class="paper-font-body2">
+                  <h1>Add your topic to <span>{{node}}</span>...</h1>
+                  
+                  <paper-input bind-value="{{add_topic_title}}"></paper-input>
+                  <paper-textarea bind-value="{{add_topic_content}}"></paper-textarea>
+                </paper-material>
+                
+              </section>
 
               <section data-route="user-info">
                 <paper-material elevation="1">

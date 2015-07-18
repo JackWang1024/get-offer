@@ -58,6 +58,7 @@
     console.log(e.detail);
     console.log(this.node, this.topic);
     console.log('add!!');
+    page('/topic/add');
   }
 
 })(document);
