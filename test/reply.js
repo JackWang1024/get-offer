@@ -66,11 +66,15 @@ describe('Reply API', function() {
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
-        expect(res.body).to.have.property('content');
-          expect(res.body).to.have.property('user_name');
-          expect(res.body).to.have.property('user_email');
-          expect(res.body).to.have.property('topic_id');
-          expect(res.body.topic_id).to.equal(topicId);
+        expect(res.body).to.have.property('success');
+        expect(res.body.success).to.equal(true);
+        expect(res.body).to.have.property('reply');
+        var reply = res.body.reply;
+        expect(reply).to.have.property('content');
+          expect(reply).to.have.property('user_name');
+          expect(reply).to.have.property('user_email');
+          expect(reply).to.have.property('topic_id');
+          expect(reply.topic_id).to.equal(topicId);
         if (err) return done(err);
         return done();
       });

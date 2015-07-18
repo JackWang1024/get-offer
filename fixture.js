@@ -133,7 +133,6 @@ Node.remove().exec()
   }).then(function() {
     return Topic.create(topics);
   }).then(function(topics) {
-    console.log(topics)
     for (var i = 0; i < replies.length; ++i) {
       replies[i].topic_id = topics[0]._id;
     }

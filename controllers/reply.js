@@ -22,9 +22,9 @@ exports.post = function(app) {
   function post(req, res) {
     var newReply = {
       content: req.body.content,
-      user_name: req.params.user_name,
-      user_email: req.params.user_email,
-      topic_id: req.params.topic_id,
+      user_name: req.body.user_name,
+      user_email: req.body.user_email,
+      topic_id: req.body.topic_id,
       post_date: new Date()
     };
 
@@ -36,10 +36,13 @@ exports.post = function(app) {
         console.log('Error in Saving reply: ' + reply);
         throw err;
       }
-
+      console.log(reply);
       Topic
-      .findOne({_id: req.params.topic_id})
-      .updateCount();
+      .findOne({_id: reply.topic_id})
+      .exec()
+      .then(function(topic) {
+        topic.updateCount();
+      });
 
       return res.json({
         success: true,
