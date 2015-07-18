@@ -58,7 +58,10 @@ exports.post = function(app) {
         console.log('Error in Saving topic: ' + err);
         throw err;
       }
-      res.json(topic);
+      res.json({
+        success: true,
+        topic: topic
+      });
     });
   }
 

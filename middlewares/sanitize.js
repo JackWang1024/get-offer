@@ -2,8 +2,8 @@ var sanitizeHtml = require('sanitize-html');
 
 module.exports = function() {
   return function(req, res, next) {
-    if (req.params.title) {
-      req.params.title = sanitizeHtml(req.params.title, {
+    if (req.body.title) {
+      req.body.title = sanitizeHtml(req.body.title, {
         allowedTags: [],
         allowedAttributes: {}
       });

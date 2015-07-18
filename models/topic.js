@@ -16,10 +16,12 @@ var TopicSchema = new Schema({
 
 TopicSchema.plugin(paginate);
 TopicSchema.methods.updateCount = function updateCount (cb) {
-  cosole.log('updating...');
-  return Reply.find({ topic_id: this._id }, function(err, replies) {
-    this.reply_count = replies.length;
-    this.save(cb);
+  console.log(this._id);
+  var that = this;
+  return Reply.find({ topic_id: that._id }, function(err, replies) {
+    that.reply_count = replies.length;
+    console.log(that);
+    that.save(cb);
   });
 };
 

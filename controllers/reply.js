@@ -36,7 +36,6 @@ exports.post = function(app) {
         console.log('Error in Saving reply: ' + reply);
         throw err;
       }
-      console.log(reply);
       Topic
       .findOne({_id: reply.topic_id})
       .exec()
