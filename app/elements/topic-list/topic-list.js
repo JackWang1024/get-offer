@@ -9,26 +9,29 @@
       node: {
         type: String,
         notify: true
+      },
+      nodeResponse: {
+        type: Object,
+        notify: true
       }
     },
     ready: function() {
       // this should be ajax
-      this.load('home');
+      // this.load('home');
     },
     load: function(node_name) {
-      if (node_name === "home") {
-        // should have been ajax here
-        this.topics = ['1', '2'];
-      } else {
-        this.topics = ['1', '2', '3', '4'];
-      }
+      this.$.topicAjax.url = '/api/node/' + node_name;
     },
     path: function(value) {
       return '/topic/' + value;
     },
     _listTap: function(e) {
-      page(this.path(this.topics[e.detail.selected]));
+      page(this.path(e.detail.item.topicId));
+      document.querySelector('topic-page').load(e.detail.item.topicData);
       document.querySelector('#mainDrawerPanel').closeDrawer();
+    },
+    onGetList: function(e) {
+      console.log(e.detail.response)
     }
   });
 })();

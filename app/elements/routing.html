@@ -6,7 +6,6 @@
     // More info: https://visionmedia.github.io/page.js/
     page('/', function () {
       app.route = 'home';
-      document.querySelector('topic-list').load('home');
       // setContentPanelMode(app.route);
     });
 
@@ -35,7 +34,7 @@
     page('/topic/:id', function(data) {
       app.route = 'topic';
       app.topic = data.params.id;
-      document.querySelector('topic-page').load(data.params.id);
+      document.querySelector('topic-page').loadById(data.params.id);
       // setContentPanelMode(app.route);
     });
 

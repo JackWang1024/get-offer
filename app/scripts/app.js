@@ -75,4 +75,8 @@
     return names[name];
   }
 
+  app.onGetNode = function(e) {
+    console.log(e.detail.response);
+  }
+
 })(document);

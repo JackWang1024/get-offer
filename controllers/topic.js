@@ -27,7 +27,8 @@ exports.get = function(app) {
 
         res.json({
           replies: replies,
-          reply_page: currentPage
+          reply_page: currentPage,
+          topic: topic
         });
       });
     });

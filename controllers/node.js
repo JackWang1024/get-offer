@@ -27,7 +27,8 @@ exports.get = function(app) {
 
         res.json({
           topics: topics,
-          topic_page: currentPage
+          topic_page: currentPage,
+          node: node
         });
       });
     });

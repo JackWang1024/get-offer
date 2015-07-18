@@ -17,26 +17,54 @@
       replies: {
         type: Array,
         notify: true
+      },
+      userName : {
+        type: String,
+        notify: true
+      },
+      userEmail : {
+        type: String,
+        notify: true
+      },
+      content : {
+        type: String,
+        notify: true
+      },
+      node: {
+        type: String,
+        notify: true
       }
     },
     ready: function() {
       // this should be ajax
-      this.load('');
+      // this.load('');
     },
-    load: function(topicId) {
-      if (!topicId) {
+    load: function(data) {
+      if (!data) {
         return;
       }
 
+      this.$.topicPageAjax.url = '/api/topic/' + data._id;
       // should have been ajax here
-      this.title = '你们都弱爆了，我已经集齐FLAG+BAT';
-      this.topicId = topicId;
-      this.lastUpdate = new Date();
-      this.replies = ['1', '2', '3', '4'];
-      this.node_name = 'experience';
-
-      app.node = app.node || this.node_name;
+      this.title = data.title;
+      this.topicId = data._id;
+      this.content = data.content;
+      this.userName = data.user_name;
+      this.userEmail = data.user_email;
+      this.lastUpdate = data.last_update;
+      this.node = data.node_name;
+      app.node = app.node || data.node_name;
       app.title = this.title;
+    },
+    onGetTopic: function(e) {
+      if (e.detail.response)
+        this.load(e.detail.response.topic);
+    },
+    mailHref: function(mail) {
+      return 'mailto://' + mail;
+    },
+    loadById: function(id) {
+      this.$.topicPageAjax.url = '/api/topic/' + id;
     }
   });
 })();

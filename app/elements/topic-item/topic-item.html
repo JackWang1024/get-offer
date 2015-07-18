@@ -12,32 +12,6 @@
     </paper-item>
   </template>
   <script>
-    var topicdb = {
-      '1': {
-      'title': '终于集齐BAT',
-      'reply': 5,
-      'last_update': '2015-07-16T14:21:43.219Z',
-      'id': '1'
-    },
-    '2': {
-      'title': '你们弱爆了，我已经集齐FLAG',
-      'reply': 21,
-      'last_update': '2015-07-16T14:12:40.219Z',
-      'id': '2'
-    },
-    '3': {
-      'title': '等H1B好烦啊啊啊',
-      'reply': 3,
-      'last_update': '2015-07-16T13:56:42.219Z',
-      'id': '3'
-    },
-    '4': {
-      'title': '运维岗，黄易，长文慎入',
-      'reply': 12,
-      'last_update': '2015-07-16T13:56:42.219Z',
-      'id': '3'
-    }
-  };
 
   Polymer({
     is: 'topic-item',
@@ -45,8 +19,8 @@
       title: {
         type: String,
         notify: true
-      }, topicId: {
-        type: String,
+      }, topicData: {
+        type: Object,
         notify: true
       }, reply: {
         type: Number,
@@ -54,19 +28,22 @@
       }, lastUpdate: {
         type: String,
         notify: true
+      }, topicId: {
+        type: String,
+        notify: true
       }
     }, ready: function() {
       // ajax here
-      this.load(this.topicId);
+      this.load(this.topicData);
     }, showDate: function(dateString) {
       return Date(dateString).getYear();
-    }, load: function(topicId) {
-      if (!topicId) {
+    }, load: function(data) {
+      if (!data) {
         return;
       }
-      var data = topicdb[topicId];
+      this.topicId = data._id;
       this.title = data.title;
-      this.reply = data.reply;
+      this.reply = data.reply_count;
       this.lastUpdate = data.last_update;
     }
   });

@@ -47,6 +47,7 @@
 
 <body unresolved class="fullbleed layout vertical">
   <template is="dom-bind" id="app" onclick="clickAction(event);">
+
     <paper-drawer-panel id="navDrawerPanel" responsive-width="1280px">
       <!-- Drawer Content -->
       <nav class="nav" drawer>
@@ -110,7 +111,7 @@
 
           <!-- List -->
           
-          <topic-list node="{{selected}}"></topic-list>
+          <topic-list node="{{node}}"></topic-list>
           
         </paper-header-panel>
 

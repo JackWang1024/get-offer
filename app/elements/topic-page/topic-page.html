@@ -20,16 +20,38 @@
       background-color: var(--default-primary-color);
       color: white;
     }
+
+    /deep/ a {
+      text-decoration: none;
+    }
+
+    /deep/ a:link, /deep/ a:visited {
+      color: var(--dark-primary-color);
+    }
+
+    /deep/ a:hover, /deep/ a:active {
+      color: var(--deafult-primary-color);
+    }
   </style>
   <template>
+
+    <iron-ajax auto
+      url=''
+      params='{"alt":"json", "q":"chrome"}'
+      handle-as="json"
+      on-response="onGetTopic"
+      last-response="{{topicResponse}}"
+      id="topicPageAjax"></iron-ajax>
+
     <paper-material elevation="1">
+      <a href="{{mailHref(userEmail)}}">{{userName}}</a>
       <p>{{title}}</p>
       <p>{{lastUpdate}}</p>
-      <p>{{topicId}}</p>
+      <p>{{content}}</p>
     </paper-material>
 
-    <template is="dom-repeat" items="{{replies}}">
-      <reply-item reply-id="{{item}}"></reply-item>
+    <template is="dom-repeat" items="{{topicResponse.replies}}">
+      <reply-item reply-data="{{item}}"></reply-item>
     </template>
 
     <paper-material elevation="1">
