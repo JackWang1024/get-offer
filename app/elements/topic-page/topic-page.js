@@ -55,6 +55,8 @@
       this.node = data.node_name;
       app.node = app.node || data.node_name;
       app.title = this.title;
+
+      document.querySelector('topic-list').load(data.node_name);
     },
     onGetTopic: function(e) {
       if (e.detail.response)

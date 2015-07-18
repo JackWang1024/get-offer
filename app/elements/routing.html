@@ -16,6 +16,7 @@
     page('/node/:name', function (data) {
       app.route = 'node-topics';
       app.node = data.params.name;
+      app.title = app.getNodeName(data.params.name);
       document.querySelector('topic-list').load(data.params.name);
     });
 

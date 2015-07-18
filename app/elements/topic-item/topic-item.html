@@ -21,7 +21,9 @@
         notify: true
       }, topicData: {
         type: Object,
-        notify: true
+        notify: true,
+        // polymer two way binding doesn't work here..
+        observer: 'topicDataChanged'
       }, reply: {
         type: Number,
         notify: true
@@ -32,8 +34,12 @@
         type: String,
         notify: true
       }
-    }, ready: function() {
+    },
+    ready: function() {
       // ajax here
+      this.load(this.topicData);
+    },
+    topicDataChanged: function() {
       this.load(this.topicData);
     }, showDate: function(dateString) {
       return Date(dateString).getYear();

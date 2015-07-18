@@ -54,7 +54,8 @@
         },
         replyData: {
           type: Object,
-          notify: true
+          notify: true,
+          observer: 'replyDataChanged'
         }
       },
       ready: function() {
@@ -72,6 +73,8 @@
       },
       mailHref: function(mail) {
         return 'mailto://' + mail;
+      }, replyDataChanged: function() {
+        this.load(this.replyData);
       }
     });
   </script>
