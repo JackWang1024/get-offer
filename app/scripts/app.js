@@ -30,9 +30,11 @@
       navDrawer.closeDrawer();
     }
 
+    var mainDrawer = document.querySelector('#mainDrawerPanel');
     if (e.detail.item.dataset.route === "node") {
-      var mainDrawer = document.querySelector('#mainDrawerPanel');
       mainDrawer.openDrawer();
+    } else {
+      mainDrawer.closeDrawer();
     }
   };
 
@@ -50,16 +52,14 @@
   }
 
   app.onRefresh = function(e) {
-    console.log(e.detail);
-    console.log('refresh!');
-    console.log(this.node, this.topic);
+    document.querySelector('topic-list').load(app.node)
   }
 
   app.onAddTopic = function(e) {
-    console.log(e.detail);
-    console.log(this.node, this.topic);
-    console.log('add!!');
+    var mainDrawer = document.querySelector('#mainDrawerPanel');
+    mainDrawer.closeDrawer();
     page('/topic/add');
+    app.title = '发布新话题';
   }
 
   app.getNodeName = function(name) {

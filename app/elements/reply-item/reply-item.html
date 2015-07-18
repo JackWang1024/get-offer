@@ -7,7 +7,7 @@
     paper-material {
       border-radius: 2px;
       height: 100%;
-      padding: 16px;
+      padding: 16px 36px;
       margin: 16px auto;
       background: white;
     }
@@ -22,8 +22,10 @@
       <div class="user-info">
         <a href="{{mailHref(userEmail)}}">{{userName}}</a>
       </div>
+      <p>{{showDate(postDate)}}</p>
+      <hr>
       <p id="content"></p>
-      <p>{{postDate}}</p>
+      
     </paper-material>
   </template>
 
@@ -73,8 +75,12 @@
       },
       mailHref: function(mail) {
         return 'mailto://' + mail;
-      }, replyDataChanged: function() {
+      },
+      replyDataChanged: function() {
         this.load(this.replyData);
+      },
+      showDate: function(date) {
+        return new Date(date).toISOString();
       }
     });
   </script>

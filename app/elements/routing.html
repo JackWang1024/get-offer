@@ -1,16 +1,20 @@
 <script src="../lib/page/page.js"></script>
 <script>
   window.addEventListener('WebComponentsReady', function() {
+    var back = document.querySelector('#go-back-icon');
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
     // More info: https://visionmedia.github.io/page.js/
     page('/', function () {
       app.route = 'home';
+      app.title = "面筋";
+      back.hidden = true;
       // setContentPanelMode(app.route);
     });
 
     page('/users', function () {
       app.route = 'users';
+      back.hidden = true;
     });
 
     page('/node/:name', function (data) {
@@ -18,10 +22,13 @@
       app.node = data.params.name;
       app.title = app.getNodeName(data.params.name);
       document.querySelector('topic-list').load(data.params.name);
+     
     });
 
     page('/favorite', function () {
       app.route = 'favorite';
+      app.title = "打个赏";
+      back.hidden = true;
       // setContentPanelMode(app.route);
     });
 
@@ -30,12 +37,14 @@
         page.redirect('/');
       }
       app.route = 'topic-add';
+      back.hidden = false;
     });
 
     page('/topic/:id', function(data) {
       app.route = 'topic';
       app.topic = data.params.id;
       document.querySelector('topic-page').loadById(data.params.id);
+      back.hidden = false;
       // setContentPanelMode(app.route);
     });
 

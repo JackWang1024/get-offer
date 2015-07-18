@@ -9,7 +9,7 @@
     paper-material {
       border-radius: 2px;
       height: 100%;
-      padding: 16px;
+      padding: 16px 36px;
       margin: 16px auto;
       background: white;
     }
@@ -44,9 +44,11 @@
       id="topicPageAjax"></iron-ajax>
 
     <paper-material elevation="1">
-      <a href="{{mailHref(userEmail)}}">{{userName}}</a>
-      <p>{{title}}</p>
-      <p>{{lastUpdate}}</p>
+      <h3>{{title}}</h3>
+      <hr>
+      <p>作者：<a href="{{mailHref(userEmail)}}">{{userName}}</a></p>
+      <p>发布日期：<span>{{lastUpdate}}</span></p>
+      
       <p>{{content}}</p>
     </paper-material>
 

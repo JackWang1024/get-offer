@@ -3,11 +3,17 @@
     :host {
       display: block;
     }
+
+    .topic-list-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   </style>
   <template>
     <paper-item horizontal layout>
-      <a data-route="topic">{{title}}</a>
-      <span flex></span>
+      <a data-route="topic" class="topic-list-title">{{title}}</a>
+      <span class="flex"></span>
       <span class="reply">{{reply}}</span>
     </paper-item>
   </template>

@@ -31,7 +31,8 @@
       document.querySelector('#mainDrawerPanel').closeDrawer();
     },
     onGetList: function(e) {
-      console.log(e.detail.response)
+      if (e.detail.response)
+        this.topics = e.detail.response.topics;
     }
   });
 })();

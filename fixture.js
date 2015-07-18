@@ -93,7 +93,54 @@ var topics = [{
   "post_date": new Date(),
   "last_update": new Date(),
   "reply_count": 6
-}];
+},
+{
+  "title": "蛤蛤蛤蛤",
+  "content": "你们啊，还是图样",
+  "user_name": "蛤丝1号",
+  "user_email": "haha@163.com",
+  "node_name": "experience",
+  "post_date": new Date(),
+  "last_update": new Date(),
+  "reply_count": 5
+}, {
+  "title": "yooooooooooo",
+  "content": "要提高自己的姿势水平",
+  "user_name": "蛤丝2号",
+  "user_email": "haha2@163.com",
+  "node_name": "preparation",
+  "post_date": new Date(),
+  "last_update": new Date(),
+  "reply_count": 0
+}, {
+  "title": "[交流|求助]指点迷津",
+  "content": "还是自己纠结吧 ",
+  "user_name": "蛤丝5号",
+  "user_email": "haha5@163.com",
+  "node_name": "wait",
+  "post_date": new Date(),
+  "last_update": new Date(),
+  "reply_count": 0
+},{
+  "title": "[深夜福利]面试技巧一谈",
+  "content": "技巧就是没技巧",
+  "user_name": "蛤丝8号",
+  "user_email": "haha8@163.com",
+  "node_name": "experience",
+  "post_date": new Date(),
+  "last_update": new Date(),
+  "reply_count": 0
+},{
+  "title": "[晒命不要钱]blablabla",
+  "content": "我拿到了BAT的offer,爽爽爽",
+  "user_name": "蛤丝终极形态",
+  "user_email": "hahafinal@163.com",
+  "node_name": "gossip",
+  "post_date": new Date(),
+  "last_update": new Date(),
+  "reply_count": 100
+}
+];
 
 var replies = [{
   "content" : "666666666666",
