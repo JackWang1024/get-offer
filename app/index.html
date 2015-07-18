@@ -154,7 +154,7 @@
 
                 <paper-material elevation="1">
                   <h2 id="license">源代码</h2>
-                  <p class="paper-font-body2">本站源代码托管在 <a href="">GitHub</a>，欢迎提 issue 和 pull request</p>
+                  <p class="paper-font-body2">本站源代码托管在 <a href="https://github.com/joyeecheung/get-offer">GitHub</a>，欢迎提 issue 和 pull request</p>
                 </paper-material>
 
                 <paper-material elevation="1" class="paper-font-body2">
@@ -178,10 +178,10 @@
                   }
                 </style>
                   <h2>发布新话题到 <span>{{getNodeName(node)}}</span>...</h2>
-                  <paper-input label="用户名" bind-value="{{add_topic_user_name}}"></paper-input>
-                  <paper-input label="邮箱" bind-value="{{add_topic_user_email}}"></paper-input>
-                  <paper-input label="标题" bind-value="{{add_topic_title}}"></paper-input>
-                  <paper-textarea label="内容（回车换行，支持 markdown）" bind-value="{{add_topic_content}}"></paper-textarea>
+                  <paper-input label="用户名" value="{{add_topic_user_name}}"></paper-input>
+                  <paper-input label="邮箱" value="{{add_topic_user_email}}"></paper-input>
+                  <paper-input label="标题" value="{{add_topic_title}}"></paper-input>
+                  <paper-textarea label="内容（回车换行，支持 markdown）" value="{{add_topic_content}}"></paper-textarea>
 
                   <paper-button class="submit-button" on-tap="submitTopic">提交</paper-button>
                 </paper-material>

@@ -34,7 +34,7 @@ var topics = [{
   "node_name": "experience",
   "post_date": new Date(),
   "last_update": new Date(),
-  "reply_count": 1
+  "reply_count": 8
 },
 {
   "title": "已集齐FLAG，你们有什么要问的",

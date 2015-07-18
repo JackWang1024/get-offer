@@ -1,7 +1,7 @@
 var Topic = require('../models/topic'),
     Reply = require('../models/reply');
 
-var REPLIES_PER_PAGE = 10;
+var REPLIES_PER_PAGE = 20;
 
 exports.get = function(app) {
   function get(req, res) {
@@ -18,7 +18,10 @@ exports.get = function(app) {
         topic_id: topic._id  // query
       }, {  // page
         page: replyPage,
-        limit: REPLIES_PER_PAGE
+        limit: REPLIES_PER_PAGE,
+        sortBy: {
+          post_date: 1
+        }
       }, function(err, replies, currentPage) {
         if (err) {
           console.log('Error in paginating replies');

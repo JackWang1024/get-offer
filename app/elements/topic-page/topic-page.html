@@ -58,9 +58,9 @@
 
     <paper-material elevation="1">
         <h3>发布新回复...</h3>
-        <paper-input label="用户名" bind-value="{{add_reply_user_name}}"></paper-input>
-        <paper-input label="邮箱" bind-value="{{add_reply_user_email}}"></paper-input>
-        <paper-textarea label="内容（回车换行，支持 markdown）" bind-value="{{add_reply_content}}"></paper-textarea>
+        <paper-input label="用户名" value="{{add_reply_user_name}}"></paper-input>
+        <paper-input label="邮箱" value="{{add_reply_user_email}}"></paper-input>
+        <paper-textarea label="内容（回车换行，支持 markdown）" value="{{add_reply_content}}"></paper-textarea>
 
         <paper-button class="submit-button" on-tap="submitReply">提交</paper-button>
     </paper-material>

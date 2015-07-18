@@ -81,6 +81,8 @@
         topic_id: this.topicId
       }
 
+      var that = this;
+
       var ajax = document.createElement('iron-ajax');
       ajax.url = '/api/reply'
       ajax.body = JSON.stringify(newReply);
@@ -91,6 +93,10 @@
         toast.text = "提交成功！";
         app.appendChild(toast);
         toast.show();
+
+        that.add_reply_user_name = "";
+        that.add_reply_user_email = "";
+        that.add_reply_content = "";
         page('/topic/' + newReply.topic_id);
       });
       ajax.generateRequest();

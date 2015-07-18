@@ -71,6 +71,8 @@
       node_name: this.node
     }
 
+    var that = this;
+
     var ajax = document.createElement('iron-ajax');
     ajax.url = '/api/topic'
     ajax.body = JSON.stringify(newTopic);
@@ -82,6 +84,12 @@
       app.appendChild(toast);
       toast.show();
       page('/node/' + newTopic.node_name);
+
+      app.add_topic_user_name = "";
+      app.add_topic_user_email = "";
+      app.add_topic_title = "";
+      app.add_topic_content = "";
+
     });
     ajax.generateRequest();
 
