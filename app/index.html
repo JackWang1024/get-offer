@@ -183,7 +183,7 @@
                   <paper-input label="标题" bind-value="{{add_topic_title}}"></paper-input>
                   <paper-textarea label="内容（回车换行，支持 markdown）" bind-value="{{add_topic_content}}"></paper-textarea>
 
-                  <paper-button class="submit-button">提交</paper-button>
+                  <paper-button class="submit-button" on-tap="submitTopic">提交</paper-button>
                 </paper-material>
                 
               </section>

@@ -43,9 +43,9 @@ exports.post = function(app) {
     var newTopic = {
       title: req.body.title,
       content: req.body.content,
-      user_name: req.params.user_name,
-      user_email: req.params.user_email,
-      node_name: req.params.node_name,
+      user_name: req.body.user_name,
+      user_email: req.body.user_email,
+      node_name: req.body.node_name,
       post_date: new Date(),
       last_update: new Date(),
       reply_count: 0

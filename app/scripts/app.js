@@ -62,6 +62,31 @@
     app.title = '发布新话题';
   }
 
+  app.submitTopic = function(e) {
+    var newTopic = {
+      user_name: this.add_topic_user_name,
+      user_email: this.add_topic_user_email,
+      title: this.add_topic_title,
+      content: this.add_topic_content,
+      node_name: this.node
+    }
+
+    var ajax = document.createElement('iron-ajax');
+    ajax.url = '/api/topic'
+    ajax.body = JSON.stringify(newTopic);
+    ajax.method = 'POST';
+    ajax.contentType="application/json";
+    ajax.addEventListener('response', function() {
+      var toast = document.createElement('paper-toast');
+      toast.text = "提交成功！";
+      app.appendChild(toast);
+      toast.show();
+      page('/node/' + newTopic.node_name);
+    });
+    ajax.generateRequest();
+
+  }
+
   app.getNodeName = function(name) {
     var names = {
       'home': '首页',
