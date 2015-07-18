@@ -69,3 +69,13 @@
 ```bash
 npm test
 ```
+
+### 兼容性
+
+#### 桌面
+
+IE10+，Firefox 30+，Chrome 34+，Opera 23+，Safari 7+
+
+#### 移动端
+
+IE mobile 10+，iOS Safari 7+，Android 4.4+
