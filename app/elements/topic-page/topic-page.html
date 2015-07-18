@@ -13,6 +13,13 @@
       margin: 16px auto;
       background: white;
     }
+
+    /deep/ paper-button {
+      margin-top: 20px;
+      /*background-color: #3FB5B4;*/
+      background-color: var(--default-primary-color);
+      color: white;
+    }
   </style>
   <template>
     <paper-material elevation="1">
@@ -24,6 +31,15 @@
     <template is="dom-repeat" items="{{replies}}">
       <reply-item reply-id="{{item}}"></reply-item>
     </template>
+
+    <paper-material elevation="1">
+        <h3>发布新回复...</h3>
+        <paper-input label="用户名" bind-value="{{add_reply_user_name}}"></paper-input>
+        <paper-input label="邮箱" bind-value="{{add_reply_user_email}}"></paper-input>
+        <paper-textarea label="内容（回车换行，支持 markdown）" bind-value="{{add_reply_content}}"></paper-textarea>
+
+        <paper-button class="submit-button">提交</paper-button>
+    </paper-material>
   </template>
 
 </dom-module>

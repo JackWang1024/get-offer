@@ -12,9 +12,8 @@
   </style>
   <template>
     <h1 class="paper-font-display1"><span>{{greeting}}</span></h1>
-    <span class="paper-font-body2">Update text to change the greeting.</span>
+    <span class="paper-font-body2">这里是面筋，交流实习经验的地方</span>
     <!-- Listens for "input" event and sets greeting to <input>.value -->
-    <input class="paper-font-body2" value="{{greeting::input}}">
   </template>
 </dom-module>
 <script>
@@ -25,7 +24,7 @@
       properties: {
         greeting: {
           type: String,
-          value: 'Welcome!',
+          value: '欢迎来到面筋',
           notify: true
         }
       }

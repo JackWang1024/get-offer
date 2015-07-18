@@ -36,6 +36,7 @@
       this.node_name = 'experience';
 
       app.node = app.node || this.node_name;
+      app.title = this.title;
     }
   });
 })();

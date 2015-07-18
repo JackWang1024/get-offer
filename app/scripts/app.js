@@ -6,6 +6,7 @@
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   var app = document.querySelector('#app');
   app.hashbang = true;
+  app.title = "面筋";
 
   app.displayInstalledToast = function() {
     document.querySelector('#caching-complete').show();
@@ -59,6 +60,19 @@
     console.log(this.node, this.topic);
     console.log('add!!');
     page('/topic/add');
+  }
+
+  app.getNodeName = function(name) {
+    var names = {
+      'home': '首页',
+      'preparation': '面试准备',
+      'process': '面试中',
+      'wait': '等待结果',
+      'experience': '经验之谈',
+      'gossip': '爆料吐槽'
+    }
+
+    return names[name];
   }
 
 })(document);

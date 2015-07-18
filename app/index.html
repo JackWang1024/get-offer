@@ -123,7 +123,7 @@
             <div class="flex"></div>
             
 
-            <h1 class="middle">你们弱爆了，我已经集齐FLAG</h1>
+            <h1 class="middle">{{title}}</h1>
             <!-- <paper-icon-button icon="search"></paper-icon-button> -->
 
             <!-- Application name -->
@@ -144,19 +144,20 @@
                 <paper-material elevation="1">
                   <my-greeting></my-greeting>
 
-                  <p class="paper-font-subhead">You now have:</p>
+                  <p class="paper-font-subhead">请注意以下规则</p>
                   <my-list></my-list>
 
-                  <p class="paper-font-body2">Looking for more Web App layouts? Check out our <a href="https://github.com/PolymerElements/app-layout-templates">layouts</a> collection. You can also <a href="http://polymerelements.github.io/app-layout-templates/">preview</a> them live.</p>
+                  <p class="paper-font-body2">如有问题，请 <a href="https://github.com/PolymerElements/app-layout-templates">联系管理员</a></p>
                 </paper-material>
 
                 <paper-material elevation="1">
-                  <p class="paper-font-body2">This is another card.</p>
+                  <h2 id="license">源代码</h2>
+                  <p class="paper-font-body2">本站源代码托管在 <a href="">GitHub</a>，欢迎提 issue 和 pull request</p>
                 </paper-material>
 
                 <paper-material elevation="1" class="paper-font-body2">
-                  <h1 id="license">License</h1>
-                  <p>Everything in this repo is BSD style license unless otherwise specified.</p>
+                  <h2 id="license">License</h2>
+                  <p>本站代码为 BSD License</p>
                 </paper-material>
 
               </section>
@@ -167,10 +168,20 @@
 
               <section data-route="topic-add">
                 <paper-material elevation="1" class="paper-font-body2">
-                  <h1>Add your topic to <span>{{node}}</span>...</h1>
-                  
-                  <paper-input bind-value="{{add_topic_title}}"></paper-input>
-                  <paper-textarea bind-value="{{add_topic_content}}"></paper-textarea>
+                <style type="text/css">
+                  paper-button {
+                    margin-top: 20px;
+                    background-color: #3FB5B4;
+                    color: white;
+                  }
+                </style>
+                  <h2>发布新话题到 <span>{{getNodeName(node)}}</span>...</h2>
+                  <paper-input label="用户名" bind-value="{{add_topic_user_name}}"></paper-input>
+                  <paper-input label="邮箱" bind-value="{{add_topic_user_email}}"></paper-input>
+                  <paper-input label="标题" bind-value="{{add_topic_title}}"></paper-input>
+                  <paper-textarea label="内容（回车换行，支持 markdown）" bind-value="{{add_topic_content}}"></paper-textarea>
+
+                  <paper-button class="submit-button">提交</paper-button>
                 </paper-material>
                 
               </section>
