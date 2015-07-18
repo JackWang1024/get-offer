@@ -6,6 +6,7 @@
     // More info: https://visionmedia.github.io/page.js/
     page('/', function () {
       app.route = 'home';
+      // setContentPanelMode(app.route);
     });
 
     page('/users', function () {
@@ -13,19 +14,31 @@
     });
 
     page('/node/:name', function (data) {
-      app.route = 'node-topics'
+      app.route = 'node-topics';
       app.params = data.params;
       document.querySelector('topic-list').load(data.params.name);
     });
 
     page('/favorite', function () {
       app.route = 'favorite';
+      // setContentPanelMode(app.route);
     });
 
     page('/topic/:id', function(data) {
       app.route = 'topic';
       document.querySelector('topic-page').load(data.params.id);
+      // setContentPanelMode(app.route);
     });
+
+    function setContentPanelMode(route) {
+      var panel = document.querySelector('#content-panel');
+      if (route === 'topic') {
+        panel.mode = 'cover';
+      } else {
+        panel.mode = 'waterfall-tall';
+      }
+    }
+
     // remove #! before urls
     page({
       hashbang: true

@@ -9,11 +9,10 @@
       <a data-route="topic">{{title}}</a>
       <span flex></span>
       <span class="reply">{{reply}}</span>
-      <span class="update">{{showDate(lastUpdate)}}</span>
     </paper-item>
   </template>
   <script>
-    var db = {
+    var topicdb = {
       '1': {
       'title': '终于集齐BAT',
       'reply': 5,
@@ -29,6 +28,12 @@
     '3': {
       'title': '等H1B好烦啊啊啊',
       'reply': 3,
+      'last_update': '2015-07-16T13:56:42.219Z',
+      'id': '3'
+    },
+    '4': {
+      'title': '运维岗，黄易，长文慎入',
+      'reply': 12,
       'last_update': '2015-07-16T13:56:42.219Z',
       'id': '3'
     }
@@ -52,12 +57,17 @@
       }
     }, ready: function() {
       // ajax here
-      var data = db[this.topicId];
+      this.load(this.topicId);
+    }, showDate: function(dateString) {
+      return Date(dateString).getYear();
+    }, load: function(topicId) {
+      if (!topicId) {
+        return;
+      }
+      var data = topicdb[topicId];
       this.title = data.title;
       this.reply = data.reply;
       this.lastUpdate = data.last_update;
-    }, showDate: function(dateString) {
-      return Date(dateString).getYear();
     }
   });
   </script>

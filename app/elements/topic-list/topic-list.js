@@ -17,18 +17,19 @@
       this.load('home');
     },
     load: function(node_name) {
-      if (node_name === "experience") {
+      if (node_name === "home") {
         // should have been ajax here
-        this.topics = ['1', '2', '3', '4'];
+        this.topics = ['1', '2'];
       } else {
-        this.topics = ['12'];;
+        this.topics = ['1', '2', '3', '4'];
       }
     },
     path: function(value) {
       return '/topic/' + value;
     },
     _listTap: function(e) {
-      page(this.path(this.topics[e.detail.selected].id));
+      console.log(e.detail.selected);
+      page(this.path(this.topics[e.detail.selected]));
       document.querySelector('#mainDrawerPanel').closeDrawer();
     }
   });

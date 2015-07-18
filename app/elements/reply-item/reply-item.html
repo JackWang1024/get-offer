@@ -3,20 +3,74 @@
     :host {
       display: block;
     }
+
+    paper-material {
+      border-radius: 2px;
+      height: 100%;
+      padding: 16px;
+      margin: 16px auto;
+      background: white;
+    }
+
+    .user-info a {
+      font-size: 16px;
+    }
+
+    /deep/ a {
+      text-decoration: none;
+    }
+
+    /deep/ a:link, /deep/ a:visited {
+      color: var(--dark-primary-color);
+    }
+
+    /deep/ a:hover, /deep/ a:active {
+      color: var(--deafult-primary-color);
+    }
+
   </style>
   <template>
     <paper-material elevation="1">
-      <div>
-        <h5>
-          <a href="{{userEmail}}">{{userName}}</a>
-        </h5>
-        <p id="content"></p>
-        <p>{{postDate}}</p>
+      <div class="user-info">
+        <a href="{{mailHref(userEmail)}}">{{userName}}</a>
       </div>
+      <p id="content"></p>
+      <p>{{postDate}}</p>
     </paper-material>
   </template>
 
   <script>
+  var db = {
+    '1': {
+      user_email: '341@163.com',
+      user_name: '蛤蛤',
+      post_date: '2015-07-16T14:21:43.219Z',
+      content: '我和华莱士谈笑风生',
+      id: '1'
+    },
+    '2': {
+      user_email: '341@163.com',
+      user_name: '蛤蛤1',
+      post_date: '2015-07-16T14:21:43.219Z',
+      content: '<a href="http://boom.com">我真为你们感到捉急啊</a>',
+      id: '2'
+    },
+    '3': {
+      user_email: '341@163.com',
+      user_name: '蛤蛤3',
+      post_date: '2015-07-16T14:21:43.219Z',
+      content: '<b>哦呵呵</b>',
+      id: '3'
+    },
+    '4': {
+      user_email: '341@163.com',
+      user_name: '蛤蛤2',
+      post_date: '2015-07-16T14:21:43.219Z',
+      content: '我和华莱士谈笑风生',
+      id: '4'
+    }
+  };
+
     Polymer({
       is: 'reply-item',
       properties: {
@@ -35,16 +89,28 @@
         content: {
           type: String,
           notify: true
-        }, replyId: {
+        },
+        replyId: {
           type: String,
           notify: true
         }
       },
       ready: function() {
-        this.userEmail = this['replyData'].user_email;
-        this.userName = this['replyData'].user_name;
-        this.postDate = Date(this['replyData'].post_date);
-        this.$.content.innerHTML = this['replyData'].content;
+        this.load(this.replyId);
+      },
+      load: function(replyId) {
+        // should have been ajax here
+        if (!replyId) {
+          return;
+        }
+        var data = db[replyId];
+        this.userEmail = data.user_email;
+        this.userName = data.user_name;
+        this.postDate = Date(data.post_date);
+        this.$.content.innerHTML = data.content;
+      },
+      mailHref: function(mail) {
+        return 'mailto://' + mail;
       }
     });
   </script>

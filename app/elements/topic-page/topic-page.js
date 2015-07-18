@@ -24,8 +24,10 @@
       this.load('');
     },
     load: function(topicId) {
-      if (!topicId) return;
-      
+      if (!topicId) {
+        return;
+      }
+
       // should have been ajax here
       this.title = '你们都弱爆了，我已经集齐FLAG+BAT';
       this.topicId = topicId;

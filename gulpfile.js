@@ -81,7 +81,7 @@ gulp.task('copy', function() {
     'app/lib/**/*'
   ]).pipe(gulp.dest('dist/lib'));
 
-  var elements = gulp.src(['app/elements/**/*.html'])
+  var elements = gulp.src(['app/elements/**/*'])
     .pipe(gulp.dest('dist/elements'));
 
   // var swBootstrap = gulp.src(['lib/platinum-sw/bootstrap/*.js'])
