@@ -1,5 +1,9 @@
 ## 安装部署说明
 
+部署图：
+
+![](deployment.jpg)
+
 ### 运行
 
 1. 安装 Node.js 与 MongoDB，并做好相应的配置。推荐使用 nvm 管理 Node.js。
