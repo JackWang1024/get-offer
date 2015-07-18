@@ -34,7 +34,12 @@
   npm install -g supervisor
   npm install -g gulp
   ```
-2. 如需要开启前端开发环境（监视前端代码并在修改时重启，使用 livereload）：
+2. 载入测试数据
+
+  ```bash
+  node fixture.js
+  ```
+3. 如需要开启前端开发环境（监视前端代码并在修改时重启，使用 livereload）：
 
   ```bash
   gulp serve
@@ -46,7 +51,7 @@
   gulp serve:dist
   ```
   访问 `http://localhost:3000`
-3. 如需要开启后端开发环境（监视后端代码并在修改时重启）：
+4. 如需要开启后端开发环境（监视后端代码并在修改时重启）：
 
   ```
   npm start
