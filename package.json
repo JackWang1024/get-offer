@@ -46,7 +46,7 @@
     "express-handlebars": "^2.0.1",
     "express-session": "~1.0.4",
     "marked": "^0.3.3",
-    "mongoose": "~3.8.12",
+    "mongoose": "^4.0.7",
     "mongoose-paginate": "^4.0.0",
     "morgan": "~1.0.0",
     "sanitize-html": "^1.7.0",
