@@ -5,6 +5,7 @@
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   var app = document.querySelector('#app');
+  app.hashbang = true;
 
   app.displayInstalledToast = function() {
     document.querySelector('#caching-complete').show();
@@ -38,5 +39,25 @@
     // when in mobile screen size, make the list be 100% width to cover the whole screen
     return isMobile ? '100%' : '25%';
   };
+
+  app.getPage = function() {
+    if (app.hashbang) {
+      return location.hash.replace('#!', '');
+    } else {
+      return location.pathname + location.search;
+    }
+  }
+
+  app.onRefresh = function(e) {
+    console.log(e.detail);
+    console.log('refresh!');
+    console.log(this.node, this.topic);
+  }
+
+  app.onAddTopic = function(e) {
+    console.log(e.detail);
+    console.log(this.node, this.topic);
+    console.log('add!!');
+  }
 
 })(document);

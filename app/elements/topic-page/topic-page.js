@@ -33,6 +33,9 @@
       this.topicId = topicId;
       this.lastUpdate = new Date();
       this.replies = ['1', '2', '3', '4'];
+      this.node_name = 'experience';
+
+      app.node = app.node || this.node_name;
     }
   });
 })();

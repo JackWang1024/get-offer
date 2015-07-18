@@ -13,7 +13,6 @@
     },
     ready: function() {
       // this should be ajax
-      console.log(this.dataset.node);
       this.load('home');
     },
     load: function(node_name) {
@@ -28,7 +27,6 @@
       return '/topic/' + value;
     },
     _listTap: function(e) {
-      console.log(e.detail.selected);
       page(this.path(this.topics[e.detail.selected]));
       document.querySelector('#mainDrawerPanel').closeDrawer();
     }

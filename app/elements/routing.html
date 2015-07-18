@@ -6,6 +6,8 @@
     // More info: https://visionmedia.github.io/page.js/
     page('/', function () {
       app.route = 'home';
+      app.node = 'home';
+      document.querySelector('topic-list').load('home');
       // setContentPanelMode(app.route);
     });
 
@@ -15,7 +17,7 @@
 
     page('/node/:name', function (data) {
       app.route = 'node-topics';
-      app.params = data.params;
+      app.node = data.params.name;
       document.querySelector('topic-list').load(data.params.name);
     });
 
@@ -26,6 +28,7 @@
 
     page('/topic/:id', function(data) {
       app.route = 'topic';
+      app.topic = data.params.id;
       document.querySelector('topic-page').load(data.params.id);
       // setContentPanelMode(app.route);
     });
@@ -41,7 +44,7 @@
 
     // remove #! before urls
     page({
-      hashbang: true
+      hashbang: document.querySelector('#app').hashbang
     });
 
   });

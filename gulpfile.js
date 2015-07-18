@@ -191,7 +191,8 @@ gulp.task('serve', ['styles', 'elements'], function() {
 // Build and serve the output from the dist build
 gulp.task('serve:dist', ['default'], function() {
   //serve multi folders
-  var server = gls.static('dist');
+  var server = gls('server.js', {env: {NODE_ENV: 'development'}});
+  //var server = gls.static('dist');
   server.start();
 
   gulp.watch(['dist/**/*'], function() {

@@ -80,7 +80,7 @@ describe('Reply API', function() {
       });
   });
 
-  it('converts the text to markdown', function(done) {
+  it('converts the text from markdown', function(done) {
     var reply = {
       content: '**楼主也是6得不行**',
       user_name: '小透明',

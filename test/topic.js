@@ -66,7 +66,7 @@ describe('Topic API', function() {
       });
   });
 
-  it('converts the text to markdown', function(done) {
+  it('converts the text from markdown', function(done) {
     var topic = {
       title: '嘿嘿，我也来讲一讲自己的经验',
       content: '### 关于我\n\n * 我是一个小透明~',
