@@ -8,6 +8,7 @@
 2. 安装依赖
 
   ```bash
+  npm install -g bower # 如果没有安装过 bower
   npm install
   bower install
   ```
