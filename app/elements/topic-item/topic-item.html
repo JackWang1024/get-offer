@@ -1,0 +1,64 @@
+<dom-module id="topic-item">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <paper-item horizontal layout>
+      <a data-route="topic">{{title}}</a>
+      <span flex></span>
+      <span class="reply">{{reply}}</span>
+      <span class="update">{{showDate(lastUpdate)}}</span>
+    </paper-item>
+  </template>
+  <script>
+    var db = {
+      '1': {
+      'title': '终于集齐BAT',
+      'reply': 5,
+      'last_update': '2015-07-16T14:21:43.219Z',
+      'id': '1'
+    },
+    '2': {
+      'title': '你们弱爆了，我已经集齐FLAG',
+      'reply': 21,
+      'last_update': '2015-07-16T14:12:40.219Z',
+      'id': '2'
+    },
+    '3': {
+      'title': '等H1B好烦啊啊啊',
+      'reply': 3,
+      'last_update': '2015-07-16T13:56:42.219Z',
+      'id': '3'
+    }
+  };
+
+  Polymer({
+    is: 'topic-item',
+    properties: {
+      title: {
+        type: String,
+        notify: true
+      }, topicId: {
+        type: String,
+        notify: true
+      }, reply: {
+        type: Number,
+        notify: true
+      }, lastUpdate: {
+        type: String,
+        notify: true
+      }
+    }, ready: function() {
+      // ajax here
+      var data = db[this.topicId];
+      this.title = data.title;
+      this.reply = data.reply;
+      this.lastUpdate = data.last_update;
+    }, showDate: function(dateString) {
+      return Date(dateString).getYear();
+    }
+  });
+  </script>
+</dom-module>

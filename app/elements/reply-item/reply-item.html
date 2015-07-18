@@ -1,0 +1,51 @@
+<dom-module id="reply-item">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <paper-material elevation="1">
+      <div>
+        <h5>
+          <a href="{{userEmail}}">{{userName}}</a>
+        </h5>
+        <p id="content"></p>
+        <p>{{postDate}}</p>
+      </div>
+    </paper-material>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'reply-item',
+      properties: {
+        userEmail: {
+          type: String,
+          notify: true,
+        },
+        postDate: {
+          type: Date,
+          notify: true
+        },
+        userName: {
+          type: String,
+          notify: true
+        },
+        content: {
+          type: String,
+          notify: true
+        }, replyId: {
+          type: String,
+          notify: true
+        }
+      },
+      ready: function() {
+        this.userEmail = this['replyData'].user_email;
+        this.userName = this['replyData'].user_name;
+        this.postDate = Date(this['replyData'].post_date);
+        this.$.content.innerHTML = this['replyData'].content;
+      }
+    });
+  </script>
+</dom-module>

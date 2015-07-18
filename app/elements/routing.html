@@ -15,6 +15,7 @@
     page('/node/:name', function (data) {
       app.route = 'node-topics'
       app.params = data.params;
+      document.querySelector('topic-list').load(data.params.name);
     });
 
     page('/favorite', function () {
@@ -23,7 +24,7 @@
 
     page('/topic/:id', function(data) {
       app.route = 'topic';
-      app.params = data.params;
+      document.querySelector('topic-page').load(data.params.id);
     });
     // remove #! before urls
     page({

@@ -3,3 +3,7 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
 }
+
+.main-drawer-panel:not([narrow]) [list-toggle] {
+  display: none;
+}

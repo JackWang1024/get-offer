@@ -1,0 +1,23 @@
+<link rel="import" href="../reply-item/reply-item.html">
+
+<dom-module id="topic-page">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <paper-material elevation="1">
+      <p>{{title}}</p>
+      <p>{{lastUpdate}}</p>
+      <p>{{topicId}}</p>
+    </paper-material>
+
+    <template is="dom-repeat" items="{{replies}}">
+      <reply-item reply-id="{{item}}"></reply-item>
+    </template>
+  </template>
+
+</dom-module>
+
+<script type="text/javascript" src="topic-page.js"></script>
