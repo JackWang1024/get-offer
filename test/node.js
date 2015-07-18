@@ -1,9 +1,7 @@
 var should = require('chai').should(),
-  expect = require('chai').expect,
-  supertest = require('supertest');
+  expect = require('chai').expect;
 
-var app = require('../server');
-var api = supertest(app);
+var api = require('./setup');
 
 function testNode(res, node_name) {
   expect(res.body).to.have.property('topics');

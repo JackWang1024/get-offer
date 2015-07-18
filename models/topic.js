@@ -15,8 +15,6 @@ var TopicSchema = new Schema({
 });
 
 TopicSchema.plugin(paginate);
-
-TopicSchema.plugin(paginate);
 TopicSchema.methods.updateCount = function updateCount (cb) {
   return Reply.find({ topic_id: this._id }, function(err, replies) {
     this.reply_count = replies.length;

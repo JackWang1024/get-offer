@@ -53,13 +53,13 @@ exports.post = function(app) {
     var topic = new Topic(newTopic);
 
     topic
-    .save(function(err) {
+    .save(function(err, topic) {
       if (err) {
         console.log('Error in Saving topic: ' + err);
         throw err;
       }
+      res.json(topic);
     });
-
   }
 
   return post;

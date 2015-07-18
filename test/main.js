@@ -1,12 +1,10 @@
 var should = require('chai').should(),
-    expect = require('chai').expect,
-    supertest = require('supertest');
- 
-var app = require('../server');
-var api = supertest(app);
+    expect = require('chai').expect;
+
+var app = require('./setup');
 
 describe('Index Page', function() {
   it("renders successfully", function(done) {
-    api.get('/').expect(200, done);    
+    app.get('/').expect(200, done);    
   })
 });

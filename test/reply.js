@@ -1,71 +1,76 @@
 var should = require('chai').should(),
   expect = require('chai').expect,
-  supertest = require('supertest');
+  async = require('async');
 
-var app = require('../server');
-var api = supertest(app);
+var api = require('./setup');
 
 describe('Reply API', function() {
-  it("gets preparation node successfully", function(done) {
+  var replies = [];
+  var topicId = null;
+
+  before(function(done) {
     api
-      .get('/api/node/preparation')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function(err, res) {
-        expect(res.body).to.have.property('topics');
-        expect(res.body.topics).to.be.a('array');
-        if (err) return done(err);
-        return done();
-      });
+    .get('/api/node/experience')
+    .end(function(err, res) {
+      if (err) return done(err);
+      var topics = res.body.topics;
+      for (var i = 0; i < topics.length; ++i) {
+        (function(id){
+          api
+          .get('/api/topic/' + id)
+          .end(function(err, res) {
+            if (err) return done(err);
+            if (res.body.replies.length > 0) {
+              replies = res.body.replies;
+              topicId = id;  // data race here?
+              return done();
+            }
+          });
+        })(topics[i]._id);
+      }
+    });
   });
 
-  it("gets process node successfully", function(done) {
-    api
-      .get('/api/node/process')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function(err, res) {
-        expect(res.body).to.have.property('topics');
-        expect(res.body.topics).to.be.a('array');
-        if (err) return done(err);
-        return done();
-      });
+  it("gets the replies sucessfully", function(done) {
+    async.map(replies, function(reply, done) {
+      api
+        .get('/api/reply/' + reply._id)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end(function(err, res) {
+          if (err) return done(err);
+          expect(res.body).to.have.property('content');
+          expect(res.body).to.have.property('user_name');
+          expect(res.body).to.have.property('user_email');
+          expect(res.body).to.have.property('topic_id');
+          expect(res.body.topic_id).to.equal(topicId);
+
+          return done();
+        });
+    }, function(err) {
+      if (err) return done(err);
+      return done()
+    });
   });
 
-  it("gets wait node successfully", function(done) {
+  it("saves a reply sucessfully", function(done) {
+    var reply = {
+      content: '楼主也是6得不行',
+      user_name: '小透明',
+      user_email: 'foo@163.com',
+      topic_id: topicId
+    }
     api
-      .get('/api/node/wait')
+      .post('/api/reply')
+      .send(reply)
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function(err, res) {
-        expect(res.body).to.have.property('topics');
-        expect(res.body.topics).to.be.a('array');
-        if (err) return done(err);
-        return done();
-      });
-  });
-
-  it("gets experience node successfully", function(done) {
-    api
-      .get('/api/node/experience')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function(err, res) {
-        expect(res.body).to.have.property('topics');
-        expect(res.body.topics).to.be.a('array');
-        if (err) return done(err);
-        return done();
-      });
-  });
-
-  it("gets gossip node successfully", function(done) {
-    api
-      .get('/api/node/gossip')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function(err, res) {
-        expect(res.body).to.have.property('topics');
-        expect(res.body.topics).to.be.a('array');
+        expect(res.body).to.have.property('content');
+          expect(res.body).to.have.property('user_name');
+          expect(res.body).to.have.property('user_email');
+          expect(res.body).to.have.property('topic_id');
+          expect(res.body.topic_id).to.equal(topicId);
         if (err) return done(err);
         return done();
       });
