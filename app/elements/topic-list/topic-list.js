@@ -21,6 +21,7 @@
     },
     load: function(node_name) {
       this.$.topicAjax.url = '/api/node/' + node_name;
+      this.$.topicAjax.generateRequest();
     },
     path: function(value) {
       return '/topic/' + value;
@@ -31,8 +32,9 @@
       document.querySelector('#mainDrawerPanel').closeDrawer();
     },
     onGetList: function(e) {
-      if (e.detail.response)
-        this.topics = e.detail.response.topics;
+      if (e.detail.response) {
+        //
+      }
     }
   });
 })();

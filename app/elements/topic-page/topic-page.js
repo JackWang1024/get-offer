@@ -39,12 +39,15 @@
       // this should be ajax
       // this.load('');
     },
+    getPath: function(id) {
+      return '/api/topic/' + id;
+    },
     load: function(data) {
       if (!data) {
         return;
       }
 
-      this.$.topicPageAjax.url = '/api/topic/' + data._id;
+      this.$.topicPageAjax.url = this.getPath(data._id);
       // should have been ajax here
       this.title = data.title;
       this.topicId = data._id;
@@ -67,6 +70,7 @@
     },
     loadById: function(id) {
       this.$.topicPageAjax.url = '/api/topic/' + id;
+      this.$.topicPageAjax.generateRequest();
     }
   });
 })();
