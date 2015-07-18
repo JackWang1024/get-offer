@@ -59,3 +59,20 @@
 ```bash
 npm test
 ```
+
+### 目录结构
+
+```
+.
+│
+├─ app (前端代码)
+├─ bin （运行入口）
+├─ controllers （Controller） 
+├─ doc （文档）  
+├─ middlewares （中间件）
+├─ models （Model）
+├─ routes （路由）
+├─ db.js  （数据库配置文件）
+├─ fixture.js （测试数据导入）
+└─ server.js （服务器模块）
+```
