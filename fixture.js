@@ -80,7 +80,7 @@ var topics = [{
   "content": "其实一开始让我来讲，我是拒绝的",
   "user_name": "小透明",
   "user_email": "baz@126.com",
-  "node_name": "waiting",
+  "node_name": "wait",
   "post_date": new Date(),
   "last_update": new Date(),
   "reply_count": 6

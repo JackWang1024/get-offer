@@ -50,7 +50,6 @@
       return 'mailto://' + mail;
     },
     loadById: function(id) {
-      this.topicId = id;
       this.$.topicPageAjax.url = '/api/topic/' + id;
       this.$.topicPageAjax.generateRequest();
     },

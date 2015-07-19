@@ -25,7 +25,6 @@
       this.loadByName(this.node);
     },
     loadByName: function(node_name) {
-      this.node = node_name;
       this.$.topicAjax.url = '/api/node/' + node_name;
       this.$.topicAjax.generateRequest();
     },

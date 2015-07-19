@@ -1,7 +1,7 @@
 var Node = require('../models/node'),
   Topic = require('../models/topic');
 
-var TOPICS_PER_PAGE = 10;
+var TOPICS_PER_PAGE = 20;
 
 exports.get = function(app) {
   function get(req, res, next) {
@@ -49,7 +49,8 @@ exports.getHot = function(app) {
       page: topicPage,
       limit: TOPICS_PER_PAGE,
       sortBy: {
-        last_update: -1
+        last_update: -1,
+        reply_count: -1
       }
     }, function(err, topics, currentPage) {
       if (err) {

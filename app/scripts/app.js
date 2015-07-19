@@ -52,7 +52,7 @@
   }
 
   app.onRefresh = function(e) {
-    document.querySelector('topic-list').load(app.node)
+    document.querySelector('topic-list').loadByName(app.node)
   }
 
   app.onAddTopic = function(e) {
@@ -90,6 +90,7 @@
       app.add_topic_title = "";
       app.add_topic_content = "";
 
+      document.querySelector('topic-list').loadByName(newTopic.node_name);
     });
     ajax.generateRequest();
 

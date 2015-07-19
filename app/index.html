@@ -62,6 +62,11 @@
               <span>首页</span>
             </a>
 
+            <a data-route="node" href="node/hot">
+              <iron-icon icon="book"></iron-icon>
+              <span>热门</span>
+            </a>
+
             <a data-route="node" href="node/preparation">
               <iron-icon icon="book"></iron-icon>
               <span>面试准备</span>
@@ -107,7 +112,7 @@
             <div>{{getNodeName(node)}}</div>
             <span class="flex"></span>
             <paper-icon-button icon="refresh" on-tap="onRefresh"></paper-icon-button>
-            <paper-icon-button icon="add" on-tap="onAddTopic"></paper-icon-button>
+            <paper-icon-button icon="add" id="add-topic-icon" on-tap="onAddTopic"></paper-icon-button>
           </paper-toolbar>
 
           <!-- List -->

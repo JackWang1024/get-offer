@@ -2,6 +2,7 @@
 <script>
   window.addEventListener('WebComponentsReady', function() {
     var back = document.querySelector('#go-back-icon');
+    var add = document.querySelector('#add-topic-icon');
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
     // More info: https://visionmedia.github.io/page.js/
@@ -9,6 +10,17 @@
       app.route = 'home';
       app.title = "面筋";
       back.hidden = true;
+      add.hidden = true;
+      document.querySelector('topic-list').node = 'hot';
+      // setContentPanelMode(app.route);
+    });
+
+    page('/favorite', function () {
+      app.route = 'favorite';
+      app.title = "打个赏";
+      document.querySelector('topic-list').node = 'hot';
+      back.hidden = true;
+      add.hidden = true;
       // setContentPanelMode(app.route);
     });
 
@@ -21,16 +33,14 @@
       app.route = 'node-topics';
       app.node = data.params.name;
       app.title = app.getNodeName(data.params.name);
-      document.querySelector('topic-list').loadByName(data.params.name);
+      document.querySelector('topic-list').node = data.params.name;
       var mainDrawer = document.querySelector('#mainDrawerPanel');
       mainDrawer.openDrawer();
-    });
 
-    page('/favorite', function () {
-      app.route = 'favorite';
-      app.title = "打个赏";
-      back.hidden = true;
-      // setContentPanelMode(app.route);
+      if (data.params.name === 'hot')
+        add.hidden = true;
+      else
+        add.hidden = false;
     });
 
     page('/topic/add', function(data) {
@@ -39,6 +49,7 @@
       }
       app.route = 'topic-add';
       back.hidden = false;
+      add.hidden = false;
     });
 
     page('/topic/:id', function(data) {
@@ -46,6 +57,10 @@
       app.topic = data.params.id;
       document.querySelector('topic-page').loadById(data.params.id);
       back.hidden = false;
+      if (app.node === 'hot')
+        add.hidden = true;
+      else
+        add.hidden = false;
       // setContentPanelMode(app.route);
     });
 
