@@ -31,7 +31,7 @@
     }
 
     var mainDrawer = document.querySelector('#mainDrawerPanel');
-    if (e.detail.item.dataset.route === "node") {
+    if (app.route === "node-topics") {
       mainDrawer.openDrawer();
     } else {
       mainDrawer.closeDrawer();
