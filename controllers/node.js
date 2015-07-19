@@ -1,7 +1,7 @@
 var Node = require('../models/node'),
   Topic = require('../models/topic');
 
-var TOPICS_PER_PAGE = 20;
+var TOPICS_PER_PAGE = 50;
 
 exports.get = function(app) {
   function get(req, res, next) {

@@ -1,7 +1,7 @@
 var Topic = require('../models/topic'),
     Reply = require('../models/reply');
 
-var REPLIES_PER_PAGE = 20;
+var REPLIES_PER_PAGE = 50;
 
 exports.get = function(app) {
   function get(req, res) {
