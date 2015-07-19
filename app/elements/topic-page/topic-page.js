@@ -14,6 +14,30 @@
       node: {
         type: String,
         notify: true
+      },
+      title: {
+        type: String,
+        notify: true
+      },
+      topicId: {
+        type: String,
+        notify: true
+      },
+      content: {
+        type: String,
+        notify: true
+      },
+      lastUpdate: {
+        type: Date,
+        notify: true
+      },
+      userName: {
+        type: String,
+        notify: true
+      },
+      userEmail: {
+        type: String,
+        notify: true
       }
     },
     ready: function() {
@@ -37,7 +61,7 @@
       document.querySelector('#topic-content').innerHTML = this.content;
       this.userName = data.user_name;
       this.userEmail = data.user_email;
-      this.lastUpdate = data.last_update;
+      this.lastUpdate = new Date(data.last_update);
       this.node = data.node_name;
       app.node = app.node || data.node_name;
       app.title = this.title;
@@ -80,6 +104,12 @@
         page('/topic/' + newReply.topic_id);
       });
       ajax.generateRequest();
+    },
+    formatDate: function(date) {
+      var dict = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var c = date.toString().match(/\w+ (\w+) (\d+) (\d+) (\d+:\d+:\d+)/);
+      var month = dict.indexOf(c[1]) + 1;
+      return [c[3], month, c[2]].join('-') + ' ' + c[4];
     }
   });
 })();

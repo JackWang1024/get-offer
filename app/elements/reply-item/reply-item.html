@@ -22,7 +22,7 @@
       <div class="user-info">
         <a href="{{mailHref(userEmail)}}">{{userName}}</a>
       </div>
-      <p>{{showDate(postDate)}}</p>
+      <p>{{formatDate(postDate)}}</p>
       <hr>
       <p id="content"></p>
       
@@ -79,8 +79,11 @@
       replyDataChanged: function() {
         this.load(this.replyData);
       },
-      showDate: function(date) {
-        return new Date(date).toISOString();
+      formatDate: function(date) {
+        var dict = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var c = date.toString().match(/\w+ (\w+) (\d+) (\d+) (\d+:\d+:\d+)/);
+        var month = dict.indexOf(c[1]) + 1;
+        return [c[3], month, c[2]].join('-') + ' ' + c[4];
       }
     });
   </script>
