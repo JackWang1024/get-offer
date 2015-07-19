@@ -1,9 +1,18 @@
 body {
   background: #fafafa;
-  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
 }
 
 .main-drawer-panel:not([narrow]) [list-toggle] {
   display: none;
+}
+
+#pay-image {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#pay-image img {
+  max-width: 100%;
 }
