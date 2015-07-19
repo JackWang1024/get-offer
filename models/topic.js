@@ -15,14 +15,16 @@ var TopicSchema = new Schema({
 });
 
 TopicSchema.plugin(paginate);
-TopicSchema.methods.updateCount = function updateCount (cb) {
-  console.log(this._id);
+TopicSchema.methods.update = function updateCount (cb) {
   var that = this;
-  return Reply.find({ topic_id: that._id }, function(err, replies) {
-    that.reply_count = replies.length;
-    console.log(that);
-    that.save(cb);
-  });
+  return Reply.find({topic_id: that._id})
+              .sort({ post_date: -1 })
+              .exec()
+              .then(function(replies) {
+                that.reply_count = replies.length;
+                that.last_update = replies[0].post_date;
+                that.save(cb);
+              });
 };
 
 var Topic = mongoose.model('Topic', TopicSchema);

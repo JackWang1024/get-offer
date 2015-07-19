@@ -8,7 +8,9 @@ exports.get = function(app) {
     .exec()
     .then(function(reply) {
       if (!reply) {
-        throw Error("The reply doesn't exist!");
+        var err = new Error("The reply doesn't exist!");
+        err.status = 404;
+        next(err);
       }
 
       res.json(reply);
@@ -33,14 +35,16 @@ exports.post = function(app) {
     reply
     .save(function(err) {
       if (err) {
-        console.log('Error in Saving reply: ' + reply);
-        throw err;
+        console.log('Error in saving replies');
+        var err = new Error("Error in saving replies");
+        next(err);
       }
+
       Topic
       .findOne({_id: reply.topic_id})
       .exec()
       .then(function(topic) {
-        topic.updateCount();
+        topic.update();
       });
 
       return res.json({

@@ -8,6 +8,10 @@ var express = require('express'),
 module.exports = function(app) {
   router.get('/user/me', user.get(app));
 
+  router.get('/heartbeat', function(req, res) {
+    res.json({});
+  })
+  router.get('/node/hot', node.getHot(app));
   router.get('/node/:name', node.get(app));
 
   router.get('/topic/:id', topic.get(app));
