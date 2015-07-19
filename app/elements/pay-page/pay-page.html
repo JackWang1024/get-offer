@@ -1,0 +1,36 @@
+<dom-module id="pay-page">
+  <style>
+    :host {
+      display: block;
+    }
+    paper-material {
+      padding: 16px 26px;
+    }
+
+    #pay-image {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #pay-image img {
+      max-width: 100%;
+    }
+  </style>
+  <template>
+    <paper-material elevation="1">
+      <h3 class="paper-font-display2">
+      这是个非盈利匿名社区，但是服务器是要钱的……给作者打个赏吧
+      </h3>
+      <div id="pay-image">
+        <img id="pay-image" src="/images/pay.png" sizing="contain"></img>
+      </div>
+    </paper-material>
+  </template>
+</dom-module>
+<script>
+  (function() {
+    Polymer({
+      is: 'pay-page'
+    });
+  })();
+</script>

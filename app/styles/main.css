@@ -7,12 +7,3 @@ body {
 .main-drawer-panel:not([narrow]) [list-toggle] {
   display: none;
 }
-
-#pay-image {
-  text-align: center;
-  margin-top: 20px;
-}
-
-#pay-image img {
-  max-width: 100%;
-}
