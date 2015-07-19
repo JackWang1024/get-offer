@@ -36,7 +36,7 @@
   <template>
 
     <iron-ajax auto
-      url="{{getPath(topicId)}}"
+      url="/api/heartbeat"
       params='{"alt":"json", "q":"chrome"}'
       handle-as="json"
       on-response="onGetTopic"

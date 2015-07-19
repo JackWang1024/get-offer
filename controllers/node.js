@@ -60,8 +60,7 @@ exports.getHot = function(app) {
 
       res.json({
         topics: topics,
-        topic_page: currentPage,
-        node: node
+        topic_page: currentPage
       });
     });
   }

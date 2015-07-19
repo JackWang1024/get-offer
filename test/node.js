@@ -14,12 +14,25 @@ function testNode(res, node_name) {
       expect(topics[i]).to.have.property('user_name');
       expect(topics[i]).to.have.property('user_email');
       expect(topics[i]).to.have.property('node_name');
-      expect(topics[i].node_name).to.equal(node_name);
+      if (node_name)
+        expect(topics[i].node_name).to.equal(node_name);
     }
   }
 }
 
 describe('Node API', function() {
+  it("gets hot node successfully", function(done) {
+    api
+      .get('/api/node/hot')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        testNode(res);
+        if (err) return done(err);
+        return done();
+      });
+  });
+
   it("gets preparation node successfully", function(done) {
     api
       .get('/api/node/preparation')

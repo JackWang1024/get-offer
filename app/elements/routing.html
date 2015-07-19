@@ -21,7 +21,7 @@
       app.route = 'node-topics';
       app.node = data.params.name;
       app.title = app.getNodeName(data.params.name);
-      document.querySelector('topic-list').load(data.params.name);
+      document.querySelector('topic-list').loadByName(data.params.name);
       var mainDrawer = document.querySelector('#mainDrawerPanel');
       mainDrawer.openDrawer();
     });

@@ -102,7 +102,8 @@
       'process': '面试中',
       'wait': '等待结果',
       'experience': '经验之谈',
-      'gossip': '爆料吐槽'
+      'gossip': '爆料吐槽',
+      'hot': '热门'
     }
 
     return names[name];

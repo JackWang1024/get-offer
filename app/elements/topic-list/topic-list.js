@@ -8,7 +8,8 @@
       },
       node: {
         type: String,
-        notify: true
+        notify: true,
+        observer: 'nodeChanged'
       },
       nodeResponse: {
         type: Object,
@@ -19,7 +20,12 @@
       // this should be ajax
       // this.load('home');
     },
-    load: function(node_name) {
+    nodeChanged: function() {
+      console.log('node changed to', this.node);
+      this.loadByName(this.node);
+    },
+    loadByName: function(node_name) {
+      this.node = node_name;
       this.$.topicAjax.url = '/api/node/' + node_name;
       this.$.topicAjax.generateRequest();
     },
@@ -28,7 +34,6 @@
     },
     _listTap: function(e) {
       page(this.path(e.detail.item.topicId));
-      document.querySelector('topic-page').load(e.detail.item.topicData);
       document.querySelector('#mainDrawerPanel').closeDrawer();
     },
     onGetList: function(e) {

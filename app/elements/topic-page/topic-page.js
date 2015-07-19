@@ -2,32 +2,13 @@
   Polymer({
     is: 'topic-page',
     properties: {
-      title: {
-        type: String,
-        notify: true,
-      },
-      lastUpdate: {
-        type: Date,
-        notify: true
-      },
       topicId: {
         type: String,
-        notify: true
+        notify: true,
+        observer: 'topicIdChanged'
       },
-      replies: {
-        type: Array,
-        notify: true
-      },
-      userName : {
-        type: String,
-        notify: true
-      },
-      userEmail : {
-        type: String,
-        notify: true
-      },
-      content : {
-        type: String,
+      topicResponse: {
+        type: Object,
         notify: true
       },
       node: {
@@ -42,12 +23,13 @@
     getPath: function(id) {
       return '/api/topic/' + id;
     },
+    topicIdChanged: function() {
+      this.loadById(this.topicId);
+    },
     load: function(data) {
       if (!data) {
         return;
       }
-
-      this.$.topicPageAjax.url = this.getPath(data._id);
       // should have been ajax here
       this.title = data.title;
       this.topicId = data._id;
@@ -59,17 +41,16 @@
       this.node = data.node_name;
       app.node = app.node || data.node_name;
       app.title = this.title;
-
-      document.querySelector('topic-list').load(data.node_name);
     },
     onGetTopic: function(e) {
-      if (e.detail.response)
+      if (e.detail.response && e.detail.response.topic)
         this.load(e.detail.response.topic);
     },
     mailHref: function(mail) {
       return 'mailto://' + mail;
     },
     loadById: function(id) {
+      this.topicId = id;
       this.$.topicPageAjax.url = '/api/topic/' + id;
       this.$.topicPageAjax.generateRequest();
     },
