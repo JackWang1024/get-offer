@@ -38,6 +38,11 @@
       userEmail: {
         type: String,
         notify: true
+      },
+      loading: {
+        type: Boolean,
+        notify: true,
+        value: false
       }
     },
     ready: function() {
@@ -69,11 +74,15 @@
     onGetTopic: function(e) {
       if (e.detail.response && e.detail.response.topic)
         this.load(e.detail.response.topic);
+      this.loading = false;
     },
     mailHref: function(mail) {
       return 'mailto://' + mail;
     },
     loadById: function(id) {
+      if (this.loading)  {
+        return;
+      }
       this.$.topicPageAjax.url = '/api/topic/' + id;
       this.$.topicPageAjax.generateRequest();
     },

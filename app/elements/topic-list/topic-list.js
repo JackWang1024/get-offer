@@ -32,13 +32,38 @@
       return '/topic/' + value;
     },
     _listTap: function(e) {
-      page(this.path(e.detail.item.topicId));
-      document.querySelector('#mainDrawerPanel').closeDrawer();
+      console.log('selected');
+      // var drawer = document.querySelector('#mainDrawerPanel');
+      // if (drawer.narrow)
+      //   drawer.closeDrawer();
+      // page(this.path(e.detail.item.topicId));
     },
     onGetList: function(e) {
       if (e.detail.response) {
         //
       }
+    },
+    _onActivate: function() {
+      console.log('activated');
+    },
+    _onClick: function(e) {
+      console.log('clicked');
+      var drawer = document.querySelector('#mainDrawerPanel');
+      if (drawer.narrow)
+        drawer.closeDrawer();
+      var item = this._parent(e.target, 'TOPIC-ITEM');
+      page(this.path(item.topicId));
+      console.log();
+    },
+    _parent: function(node, tag) {
+      if (node.nodeName === tag) return node;
+      while (node.parentNode !== document.body) {
+        if (node.parentNode.nodeName === tag) {
+          return node.parentNode;
+        }
+        node = node.parentNode;
+      }
+      return null;
     }
   });
 })();
